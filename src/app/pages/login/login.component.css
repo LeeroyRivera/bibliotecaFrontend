@@ -1,137 +1,206 @@
-:root {
-    --library-primary: #6F4E37;  /* Café principal */
-    --library-accent: #C4A484;   /* Café claro */
-    --library-light: #E6D5C3;    /* Café muy claro */
-    --library-dark: #4B3621;     /* Café oscuro */
-    --text-light: #FFF8F0;       /* Texto claro */
-    --error-color: #c62828;      /* Rojo para errores */
-    --page-bg: #f5f1eb;         /* Nuevo color de fondo */
-  }
-  
-  /* Estilos para el fondo de la página */
-  :host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: var(--page-bg);
-    background-image: 
-      radial-gradient(circle at 10% 20%, rgba(196, 164, 132, 0.05) 0%, rgba(196, 164, 132, 0.05) 90%),
-      radial-gradient(circle at 90% 80%, rgba(111, 78, 55, 0.05) 0%, rgba(111, 78, 55, 0.05) 90%);
-    padding: 2rem;
-    box-sizing: border-box;
-  }
-  
+/* Estilos base con centrado perfecto */
+.login-container {
+  max-width: 420px;
+  width: 90%;
+  padding: 3rem;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 12px 30px rgba(94, 31, 40, 0.15);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(to right, #5E1F28, #8A2F2E);
+}
+
+.login-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.05;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%235E1F28" d="M3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm8 0H5v2h6V6zm0 4H5v2h6v-2zm0 4H5v2h6v-2zm7-8h-6v2h6V6zm0 4h-6v2h6v-2zm0 4h-6v2h6v-2z"/></svg>');
+  background-repeat: repeat;
+  background-size: 80px;
+}
+
+/* Logo y título con espaciado uniforme */
+.library-logo {
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  width: 100%;
+}
+
+.library-logo svg {
+  width: 70px;
+  height: 70px;
+  fill: #5E1F28;
+  margin: 0 auto 1.2rem;
+  display: block;
+}
+
+.library-logo h2 {
+  color: #5E1F28;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+}
+
+/* Formulario con espaciado uniforme */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin: 0 auto 1.8rem;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.form-group label {
+  display: block;
+  margin: 0 auto 0.8rem;
+  color: #83764C;
+  font-weight: 600;
+  font-size: 0.95rem;
+  width: 100%;
+  text-align: left;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  border: 2px solid #e0e2e6;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: white;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #8A2F2E;
+  box-shadow: 0 0 0 0.25rem rgba(138, 47, 46, 0.25);
+}
+
+/* Grupo de input con icono */
+.input-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.input-group-text {
+  position: absolute;
+  right: 1rem;
+  color: #8A2F2E;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Botón con espaciado consistente */
+.login-button {
+  width: 100%;
+  max-width: 320px;
+  padding: 1rem;
+  background: linear-gradient(to right, #8A2F2E, #5E1F28);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0.5rem auto 0;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(94, 31, 40, 0.3);
+}
+
+.login-button i {
+  font-size: 1.2rem;
+}
+
+/* Mensaje de error centrado */
+.error {
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1.8rem auto 0;
+  text-align: center;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 3px solid #dc3545;
+  width: 100%;
+  max-width: 320px;
+}
+
+.error i {
+  margin-right: 0.6rem;
+  font-size: 1.1rem;
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
   .login-container {
-    width: 100%;
-    max-width: 420px;
-    padding: 2.5rem;
-    border-radius: 12px;
-    background: linear-gradient(145deg, #FFF8F0, #F5ECE4);
-    box-shadow: 
-      0 4px 6px rgba(0, 0, 0, 0.05),
-      0 10px 30px rgba(111, 78, 55, 0.15);
+    padding: 2.5rem 1.8rem;
+    width: 95%;
     position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(182, 146, 115, 0.2);
-    margin: auto; /* Centrado adicional */
-  }
-  
-  /* Resto de tus estilos permanecen igual... */
-  .library-logo {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .library-logo svg {
-    width: 60px;
-    height: 60px;
-    fill: var(--library-primary);
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 2rem auto;
   }
   
   .library-logo h2 {
-    color: var(--library-dark);
-    margin-top: 1rem;
     font-size: 1.8rem;
   }
   
   .form-group {
-    margin-bottom: 1.8rem;
-    position: relative;
+    margin-bottom: 1.6rem;
   }
   
-  .form-group label {
-    display: block;
-    margin-bottom: 0.6rem;
-    color: var(--library-dark);
-    font-weight: 600;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid #B7A897;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: rgba(255, 248, 240, 0.8);
-    transition: all 0.3s ease;
-  }
-  
-  .form-group input:focus {
-    outline: none;
-    border-color: var(--library-accent);
-    box-shadow: 0 0 0 3px rgba(196, 164, 132, 0.2);
-  }
-  
-  .input-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--library-accent);
-  }
-  
-  .login-button {
-    width: 100%;
-    padding: 1rem;
-    background: linear-gradient(to right, var(--library-primary), var(--library-dark));
-    color: var(--text-light);
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
+  body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    min-height: 100vh;
+    padding: 1rem;
   }
-  
-  .login-button:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(75, 54, 33, 0.2);
-  }
-  
-  .error {
-    color: var(--error-color);
-    margin-top: 1.5rem;
-    text-align: center;
-    padding: 0.8rem;
-    border-radius: 8px;
-    background-color: rgba(198, 40, 40, 0.1);
-  }
-  
-  .login-background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    opacity: 0.05;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%234B3621" d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>');
-    background-repeat: repeat;
-    background-size: 80px;
-  }
+}

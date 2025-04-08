@@ -1,30 +1,40 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username = '';
-  password = '';
-  errorMessage = '';
+  username: string = '';
+  password: string = '';
+  errorMessage: string | null = null;
+  showPassword: boolean = false;
 
-  onSubmit() {
-    // Lógica de autenticación aquí
-    console.log('Usuario:', this.username, 'Contraseña:', this.password);
+  onSubmit(): void {
+    // Lógica de autenticación
+    console.log('Username:', this.username);
+    console.log('Password:', this.password);
     
-    // Ejemplo de validación básica
+    // Ejemplo de manejo de errores
     if (!this.username || !this.password) {
-      this.errorMessage = 'Usuario y contraseña son requeridos';
+      this.errorMessage = 'Por favor ingresa usuario y contraseña';
       return;
     }
     
-    // Aquí iría la llamada a tu servicio de autenticación
+    // Aquí iría la llamada al servicio de autenticación
+    // this.authService.login(this.username, this.password).subscribe(...)
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+    const passwordField = document.getElementById('password') as HTMLInputElement;
+    if (passwordField) {
+      passwordField.type = this.showPassword ? 'text' : 'password';
+    }
   }
 }
