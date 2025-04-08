@@ -1,58 +1,46 @@
 <div class="login-container">
-  <div class="login-background"></div>
-  
-  <div class="library-logo">
-    <svg viewBox="0 0 24 24">
-      <path d="M3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm8 0H5v2h6V6zm0 4H5v2h6v-2zm0 4H5v2h6v-2zm7-8h-6v2h6V6zm0 4h-6v2h6v-2zm0 4h-6v2h6v-2z"/>
-    </svg>
-    <h2>Biblioteca Digital</h2>
-  </div>
-
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="username">Usuario</label>
-      <div class="input-group">
+  <div class="login-card">
+    <h2>Login Biblioteca Molina.books</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Usuario</label>
         <input 
-          type="text" 
-          id="username" 
-          [(ngModel)]="username" 
-          name="username" 
-          required 
-          placeholder="Ingresa tu usuario"
-          class="form-control">
-        <span class="input-group-text">
-          <i class="bi bi-person-fill"></i>
-        </span>
+          type="email" 
+          id="email" 
+          name="email" 
+          [(ngModel)]="email" 
+          required
+          placeholder="Ingresa tu correo electrónico"
+        >
       </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="password">Contraseña</label>
-      <div class="input-group">
+      
+      <div class="form-group">
+        <label for="password">Contraseña</label>
         <input 
-          [type]="showPassword ? 'text' : 'password'" 
+          type="password" 
           id="password" 
-          [(ngModel)]="password" 
           name="password" 
-          required 
+          [(ngModel)]="password" 
+          required
           placeholder="Ingresa tu contraseña"
-          class="form-control">
-        <span 
-          class="input-group-text password-toggle" 
-          (click)="togglePasswordVisibility()">
-          <i [class]="showPassword ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'"></i>
-        </span>
+        >
       </div>
-    </div>
-    
-    <button type="submit" class="login-button">
-      <i class="bi bi-box-arrow-in-right me-2"></i>
-      Ingresar
-    </button>
-  </form>
-
-  <p *ngIf="errorMessage" class="error">
-    <i class="bi bi-exclamation-triangle-fill me-2"></i>
-    {{ errorMessage }}
-  </p>
+      
+      <div class="options-row">
+        <div class="remember-me">
+          <input 
+            type="checkbox" 
+            id="rememberMe" 
+            name="rememberMe" 
+            [(ngModel)]="rememberMe"
+          >
+          <label for="rememberMe">Remember me</label>
+        </div>
+        
+        <a routerLink="/forgot-password" class="forgot-password">Forgot Password?</a>
+      </div>
+      
+      <button type="submit" class="login-button">LOGIN</button>
+    </form>
+  </div>
 </div>
