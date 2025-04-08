@@ -1,0 +1,48 @@
+.not-found-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f8f9fa;
+  }
+  
+  .error-code {
+    font-size: 8rem;
+    font-weight: 800;
+    color: #343a40;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  
+  .error-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 1.5rem;
+  }
+  
+  .error-message {
+    font-size: 1.25rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+  }
+  
+  .error-suggestions {
+    margin-top: 2rem;
+  }
+  
+  .error-suggestions p {
+    color: #6c757d;
+    margin-bottom: 1rem;
+  }
+  
+  /* Efecto hover para los botones */
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-outline-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
