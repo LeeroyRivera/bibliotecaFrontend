@@ -42,8 +42,9 @@ label {
   display: block;
   margin-bottom: 8px;
   color: #8c6a56;
-  font-weight: 500;
+  font-weight: bold;
   padding-left: 30px;
+  
 }
 
 input[type="email"],
@@ -113,6 +114,14 @@ input[type="password"]:focus {
   color: #8c6a56;
 }
 
+.button-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
 .login-button {
   width: 100%;
   padding: 12px;
@@ -130,12 +139,28 @@ input[type="password"]:focus {
   gap: 8px;
 }
 
-.login-button::before {
-  content: "→"; /* Ícono de flecha para el botón */
-  font-size: 18px;
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #d4b996;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .login-button:hover {
+  background-color: #b9936c;
+}
+
+.register-button:hover {
   background-color: #b9936c;
 }
 
@@ -148,3 +173,4 @@ input[type="password"]:hover {
 .login-button:active {
   transform: translateY(1px);
 }
+

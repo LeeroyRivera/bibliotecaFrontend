@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,14 +13,18 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  rememberMe: boolean = false;
+
+  constructor(private router: Router) {} 
 
   onSubmit() {
     console.log('Login attempt with:', {
       email: this.email,
       password: this.password,
-      rememberMe: this.rememberMe
     });
     // Aquí iría la lógica de autenticación
+  }
+
+  toRegister() {
+    this.router.navigate(['registro']);
   }
 }
