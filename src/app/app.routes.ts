@@ -7,7 +7,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'home', component: HomePageComponent },
-    { path: '**', component: NotFoundComponent }
+    { path: '**', component: NotFoundComponent },
+    
 ];
 
 @NgModule({
