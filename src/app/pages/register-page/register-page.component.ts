@@ -1,36 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-register-page',
   standalone: true,
   imports: [FormsModule, RouterModule, CommonModule],
+  providers: [UserService],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.css'
 })
 export class RegisterPageComponent {
-  form: FormGroup;
   usuariosNombre: string = '';
   usuariosCorreo: string = '';
   usuariosContra: string = '';
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      usuariosNombre: [''],
-      usuariosCorreo: [''],
-      usuariosContra: [''],
-    });
+  constructor(private router: Router, private userService: UserService) {
+  
   }
 
   register() {
-    if (this.form.valid) {
-      const formData = this.form.value;
-      console.log('Form Data:', formData);
-      // Aquí puedes enviar los datos del formulario a tu API o realizar otras acciones
-    }
+    const user = {
+      usuariosNombre: this.usuariosNombre,
+      usuariosCorreo: this.usuariosCorreo,
+      usuariosContra: this.usuariosContra
+    };
+    console.log('User registered:', user);
   }
+    // Aquí puedes agregar la lógica para enviar el usuario al servidor o realizar otras acciones necesarias.
 }
