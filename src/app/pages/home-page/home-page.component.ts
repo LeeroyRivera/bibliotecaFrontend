@@ -6,9 +6,10 @@ import { HeaderComponent } from "../../components/header/header.component";
 @Component({
   selector: 'app-home-page',
   imports: [RouterModule, HeaderComponent],
+  standalone: true,
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
-  providers: [BooksDataService]
+  //providers: [BooksDataService]
 })
 export class HomePageComponent {
 

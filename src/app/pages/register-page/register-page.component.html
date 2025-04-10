@@ -1,0 +1,46 @@
+<div class="register-container">
+    <div class="register-card">
+      <h2>Registro Biblioteca Molina.books</h2>
+      <form (ngSubmit)="register()">
+        <div class="form-group">
+          <label for="usuariosNombre" class="label-1">Nombre de Usuario</label>
+          <input 
+            type="text" 
+            id="usuariosNombre" 
+            name="usuariosNombre" 
+            [(ngModel)]="usuariosNombre" 
+            required
+            placeholder="Ingresa tu nombre de usuario"
+          >
+        </div>
+  
+        <div class="form-group">
+          <label for="usuariosCorreo" class="label-1">Correo Electrónico</label>
+          <input 
+            type="email" 
+            id="usuariosCorreo" 
+            name="usuariosCorreo" 
+            [(ngModel)]="usuariosCorreo" 
+            required
+            placeholder="Ingresa tu correo electrónico"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="usuariosContra" class="label-1">Contraseña</label>
+          <input 
+            type="password" 
+            id="usuariosContra" 
+            name="usuariosContra" 
+            [(ngModel)]="usuariosContra" 
+            required
+            placeholder="Ingresa tu contraseña"
+          >
+        </div>
+        
+        <div class="button-row">
+          <button type="submit" class="register-button">REGISTRARSE</button>
+        </div>
+      </form>
+    </div>
+  </div>
