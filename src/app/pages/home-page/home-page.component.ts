@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { BooksDataService } from '../../services/books-data.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
@@ -12,5 +11,12 @@ import { HeaderComponent } from "../../components/header/header.component";
   //providers: [BooksDataService]
 })
 export class HomePageComponent {
+
+  constructor(private router: Router) {}
+
+  goToBooks() {
+    // Navegar a la página de libros
+    this.router.navigate(['libros']);
+  }
 
 }
