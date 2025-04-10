@@ -8,7 +8,7 @@ import { LoansComponent } from "./pages/loans/loans.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule, LoginComponent, HeaderComponent, HomePageComponent, LoansComponent],
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

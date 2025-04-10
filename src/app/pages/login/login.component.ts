@@ -4,7 +4,7 @@ import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule, HeaderComponent],
+  imports: [RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
