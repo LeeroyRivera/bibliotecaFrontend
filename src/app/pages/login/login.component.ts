@@ -21,6 +21,8 @@ export class LoginComponent {
 
   constructor(private router: Router, private userService: UserService) {} 
 
+  // No se utilzo guard ni tokens ya que nos enfocamos mas en las funcionalidades de un Crud en backend y frontend como hemos visto en clase.
+
   onSubmit() {
     // Llamado al servicio user.services y enviado el objeto user para iniciar sesión en la base de datos.
     // Se utiliza el método getUsersLogin para obtener los datos del usuario.
@@ -31,7 +33,7 @@ export class LoginComponent {
         // Si la respuesta es 'ok', se redirige a la página de inicio de sesión
         // Si la respuesta no es 'ok', se muestra un mensaje de error
         if (response.usuariosEstado === true) {
-          localStorage.setItem('user', JSON.stringify(response.usuariosNombre));
+          localStorage.setItem('user', JSON.stringify(response.usuasriosNombre));
           this.router.navigate(['home']);
         } else {
           alert('Usuario o contraseña incorrectos');

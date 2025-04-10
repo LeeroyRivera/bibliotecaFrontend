@@ -1,2 +1,14 @@
 <app-header></app-header>
-<p>books-page works!</p>
+
+<div class="books-container">
+    <div class="book-card" *ngFor="let book of books">
+      <img [src]="book.librosPortada" alt="Portada del libro" style="height: 200px; width: 200px;" class="book-cover">
+      <div class="book-details">
+        <h3>{{ book.librosTitulo }}</h3>
+        <p><strong>Autor:</strong> {{ book.librosAutor }}</p>
+        <p><strong>Género:</strong> {{ book.librosGenero }}</p>
+        <p><strong>Fecha de Publicación:</strong> {{ book.librosFechaPublicacion | date }}</p>
+        <p><strong>Descripción:</strong> {{ book.librosDescripcion }}</p>
+      </div>
+    </div>
+  </div>
