@@ -5,6 +5,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoansComponent } from './pages/loans/loans.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { BooksPageComponent } from './pages/books-page/books-page.component';
+import { LoansFormComponent } from './pages/loans-form/loans-form.component';
 
 export const routes: Routes = [
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'libros', component: BooksPageComponent },
   { path: 'prestamos', component: LoansComponent },
+  { path: 'prestamos/formulario', component: LoansFormComponent },
   { path: '**', component: NotFoundComponent },
 
 ];
