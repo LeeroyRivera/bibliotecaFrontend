@@ -1,1 +1,34 @@
-<p>Buzos con el login</p>
+<div class="login-container">
+  <div class="login-card">
+    <h2>Login Biblioteca Molina.books</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email" class="label-1">Usuario</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          [(ngModel)]="email" 
+          required
+          placeholder="Ingresa tu correo electrónico"
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="password" class="label-1">Contraseña</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          [(ngModel)]="password" 
+          required
+          placeholder="Ingresa tu contraseña"
+        >
+      </div>
+      <div class="button-row">
+        <button type="submit" class="login-button">LOGIN</button>
+        <button (click)="toRegister()" class="register-button">REGISTRARSE</button>
+      </div>
+    </form>
+  </div>
+</div>
