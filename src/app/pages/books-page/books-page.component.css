@@ -84,6 +84,11 @@
 
   .book-details {
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically */
+    text-align: center;
   }
   
   .book-details h3 {

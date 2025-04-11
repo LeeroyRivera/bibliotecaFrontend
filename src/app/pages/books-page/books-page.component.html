@@ -8,10 +8,10 @@
       <img [src]="book.librosPortada" alt="Portada del libro" class="book-cover">
       <div class="book-details">
         <h3>{{ book.librosTitulo }}</h3>
-        <p><strong>Autor:</strong> {{ book.librosAutor }}</p>
-        <p><strong>Género:</strong> {{ book.librosGenero }}</p>
-        <p><strong>Fecha de Publicación:</strong> {{ book.librosFechaPublicacion | date }}</p>
-        <p><strong>Descripción:</strong> {{ book.librosDescripcion }}</p>
+        <p class="autor"><strong>Autor:</strong> {{ book.librosAutor }}</p>
+        <p class="genero"><strong>Género:</strong> {{ book.librosGenero }}</p>
+        <p class="fecha"><strong>Fecha de Publicación:</strong> {{ book.librosFechaPublicacion | date }}</p>
+        <p class="descripcion"><strong>Descripción:</strong> {{ book.librosDescripcion }}</p>
       </div>
       <div><img [src]="book.librosPortada" alt="Portada del libro" class="upper-book-cover"></div>
     </div>
