@@ -1,16 +1,10 @@
+<app-header></app-header>
 <div class="loans-container">
   <div class="card">
     <div class="card-header">
       <h2 class="card-title">Listado de Préstamos</h2>
       <div class="card-tools">
-        <div class="search-box">
-          <i class="search-icon">🔍</i>
-          <input type="text" [(ngModel)]="searchTerm" (input)="filterLoans()" 
-                 placeholder="Buscar por libro, usuario o estado" class="search-input">
-        </div>
-        <a routerLink="/loans/add" class="add-button">
-          <i class="plus-icon">+</i> Nuevo Préstamo
-        </a>
+        <a routerLink="/prestamos/formulario" class="add-button">Nuevo Prestamo</a>
       </div>
     </div>
 
@@ -47,9 +41,6 @@
                 {{ getEstadoText(loan.prestamoEstado) }}
               </td>
               <td data-label="Acciones" class="actions">
-                <button [routerLink]="['/prestamos/formulario', loan.prestamosID]" class="action-button edit">
-                  <i class="edit-icon">✏️</i>
-                </button>
                 <button (click)="deleteLoan(loan.prestamosID)" class="action-button delete">
                   <i class="delete-icon">🗑️</i>
                 </button>

@@ -30,6 +30,20 @@ label {
   font-weight: 500;
 }
 
+.select{
+  width: 97%;
+  padding: 0.75rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
 .form-control {
   width: 90%;
   padding: 0.75rem;

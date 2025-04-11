@@ -6,12 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BooksDataService } from '../../services/books-data.service';
 import { UserService } from '../../services/user.service';
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
   selector: 'app-loans',
   providers: [LoanService, BooksDataService, UserService],
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, RouterModule, FormsModule, HttpClientModule, HeaderComponent],
   templateUrl: './loans.component.html',
   styleUrls: ['./loans.component.css']
 })

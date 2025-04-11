@@ -34,6 +34,9 @@ export class LoginComponent {
         // Si la respuesta no es 'ok', se muestra un mensaje de error
         if (response.usuariosEstado === true) {
           localStorage.setItem('user', JSON.stringify(response.usuariosNombre));
+          localStorage.setItem('userID', JSON.stringify(response.usuariosID));
+          console.log('Usuario:', response.usuariosNombre);
+          console.log('ID:', response.usuariosID);
           this.router.navigate(['home']);
         } else {
           alert('Usuario o contraseña incorrectos');

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoanService } from '../../services/loan.service';
@@ -6,41 +6,67 @@ import { Router } from '@angular/router';
 import { BooksDataService } from '../../services/books-data.service';
 import { UserService } from '../../services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from "../../components/header/header.component";
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-loans-form',
   providers: [BooksDataService, LoanService, UserService],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, HeaderComponent],
   templateUrl: './loans-form.component.html',
   styleUrls: ['./loans-form.component.css']
 })
-export class LoansFormComponent implements OnInit {
-  @Output() submitLoan = new EventEmitter<any>();
-  isSubmitting: boolean = false;
-  submitError: string | null = null;
-  
+export class LoansFormComponent{
+
   loanForm = new FormGroup({
-    libro: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(100)
-    ]),
     usuario: new FormControl({ value: '', disabled: true }, Validators.required),
-    prestamoFechaInicial: new FormControl('', Validators.required),
-    prestamoFechaDevolucion: new FormControl('', Validators.required),
-    prestamoEstado: new FormControl(false) // Cambiado a booleano para el checkbox
+    prestamosFechaInicial: new FormControl('', Validators.required), 
+    prestamosFechaFinal: new FormControl('', Validators.required),
   });
 
-  constructor(
-    private loanService: LoanService,
-    private router: Router
-  ) {}
+  books: any[] = []; // Variable para almacenar los libros obtenidos de la API
+  users: any[] = []; // Variable para almacenar los usuarios obtenidos de la API
 
-  ngOnInit() {
-    this.loadUser();
+  libros_ID: number = 0;
+  usuarios_ID: number = 0;
+  prestamosEstado: boolean = false;
+
+  constructor(private router: Router, private loansService: LoanService, private booksService: BooksDataService) {}
+
+  onSubmit() {
+
+    const prestamo = {
+      libros_ID: this.libros_ID,
+      usuarios_ID: localStorage.getItem('userID'),
+      prestamosFechaInicial: this.loanForm.value.prestamosFechaInicial,
+      prestamosFechaDevolucion: this.loanForm.value.prestamosFechaFinal,
+      prestamosEstado: this.prestamosEstado
+    };
+
+    console.log('prestamo', prestamo); // Debugging: Ver el objeto prestamo en la consola
+    this.loansService.addLoan(prestamo).pipe(
+      tap((response) => {
+        if (response.msg === 'ok') {
+          alert('Usuario registrado correctamente');
+        } else {
+          console.error('Error al regisstrar el usuario:', response);
+          alert('Error al registrar el usuario');
+        }
+      })
+    ).subscribe();
   }
 
+  resetForm() {
+    this.router.navigate(['prestamos']);
+  }
+
+  ngOnInit() {
+    console.log(localStorage.getItem('userID'));
+    this.loadUser();
+    this.loadBooks();
+  }
+  
   private loadUser() {
     try {
       const storedUser = localStorage.getItem('user');
@@ -62,55 +88,18 @@ export class LoansFormComponent implements OnInit {
       });
     }
   }
-
-  onSubmit() {
-    if (this.loanForm.invalid || this.isSubmitting) return;
-
-    this.isSubmitting = true;
-    this.submitError = null;
-
-    // Habilitar temporalmente el campo usuario para obtener su valor
-    this.loanForm.get('usuario')?.enable();
-    
-    // Preparar los datos para enviar
-    const formData = {
-      libros_ID: this.loanForm.value.libro,
-      usuarios_ID: this.loanForm.value.usuario,
-      prestamosFechaInicial: this.loanForm.value.prestamoFechaInicial,
-      prestamosFechaDevolucion: this.loanForm.value.prestamoFechaDevolucion,
-      prestamosEstado: this.loanForm.value.prestamoEstado ? 'DEVUELTO' : 'PENDIENTE'
-    };
-
-    // Llamar al servicio para guardar
-    this.loanService.addLoan(formData).subscribe({
-      next: (response) => {
-        this.isSubmitting = false;
-        this.loanForm.get('usuario')?.disable();
-        
-        // Opción 1: Emitir evento (si el padre maneja la navegación)
-        this.submitLoan.emit(response);
-        
-        // Opción 2: Navegar directamente (descomentar si prefieres esta opción)
-        // this.router.navigate(['/loans']);
-        
-        this.resetForm();
-      },
-      error: (error) => {
-        console.error('Error al guardar préstamo:', error);
-        this.isSubmitting = false;
-        this.loanForm.get('usuario')?.disable();
-        this.submitError = 'Error al guardar el préstamo. Por favor intenta nuevamente.';
-      }
+  
+  private loadBooks() {
+    this.booksService.getBooks().subscribe((data: any) => {
+      this.books = data;// Asignación de los libros obtenidos a la variable books
+    },
+    (error: any) => {
+      console.error('Error al obtener los libros:', error);// Manejo de errores en la llamada a la API
     });
   }
 
-  resetForm() {
-    this.loanForm.reset({
-      prestamoEstado: false // Resetear el checkbox a false (PENDIENTE)
-    });
-    this.loadUser();
-    this.loanForm.get('usuario')?.disable();
+  onBookChange(event: Event) {
+    const selectedBookId = (event.target as HTMLSelectElement).value;
+    this.libros_ID = Number(selectedBookId); // Store the selected book's ID 
   }
-
-  get libro() { return this.loanForm.get('libro'); }
 }

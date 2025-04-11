@@ -1,23 +1,15 @@
 <div class="login-container">
   <h2>Registro de Préstamo</h2>
   
-  <form [formGroup]="loanForm" (ngSubmit)="onSubmit()" class="loan-form">
+  <form (ngSubmit)="onSubmit()" [formGroup] ="loanForm" class="loan-form">
     <div class="form-group">
       <label for="libro">Libro</label>
-      <input type="text" id="libro" formControlName="libro" class="form-control" 
-             placeholder="Ingrese el nombre del libro">
-      
-      <div *ngIf="libro?.invalid && (libro?.dirty || libro?.touched)" class="error-message">
-        <div *ngIf="libro?.errors?.['required']">
-          El nombre del libro es requerido
-        </div>
-        <div *ngIf="libro?.errors?.['minlength']">
-          Mínimo 3 caracteres
-        </div>
-        <div *ngIf="libro?.errors?.['maxlength']">
-          Máximo 100 caracteres
-        </div>
-      </div>
+      <select id="libro" class="select" (change)="onBookChange($event)">
+        <option value="" disabled selected>Seleccione un libro</option>
+        <option *ngFor="let book of books" [value]="book.librosID">
+          {{ book.librosTitulo }}
+        </option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -27,35 +19,27 @@
 
     <div class="form-group">
       <label for="prestamoFechaInicial">Fecha de Préstamo</label>
-      <input type="date" id="prestamoFechaInicial" formControlName="prestamoFechaInicial" class="form-control">
+      <input type="date" id="prestamoFechaInicial"  class="form-control" formControlName="prestamosFechaInicial">
     </div>
 
     <div class="form-group">
       <label for="prestamoFechaDevolucion">Fecha de Devolución</label>
-      <input type="date" id="prestamoFechaDevolucion" formControlName="prestamoFechaDevolucion" class="form-control">
+      <input type="date" id="prestamoFechaDevolucion" class="form-control" formControlName="prestamosFechaFinal">
     </div>
 
     <div class="form-group checkbox-group">
       <label for="prestamoEstado">
-        <input type="checkbox" id="prestamoEstado" formControlName="prestamoEstado">
+        <input type="checkbox" id="prestamoEstado" >
         ¿Libro devuelto?
       </label>
     </div>
 
     <div class="form-footer">
-      <div *ngIf="submitError" class="error-message">
-        {{ submitError }}
-      </div>
       
       <div class="button-group">
-        <button type="button" class="cancel-button" (click)="resetForm()">
-          Limpiar
-        </button>
-        
-        <button type="submit" class="submit-button" [disabled]="loanForm.invalid || isSubmitting">
-          <span *ngIf="!isSubmitting">Guardar</span>
-          <span *ngIf="isSubmitting">Guardando...</span>
-        </button>
+        <button type="button" class="cancel-button" (click)="resetForm()">Cancelar</button>
+          
+        <button type="submit" class="submit-button">Guardar</button>
       </div>
     </div>
   </form>
