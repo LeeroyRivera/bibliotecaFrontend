@@ -1,14 +1,44 @@
-<app-header></app-header>
-<div class="loans-container">
-    <h2>Gestión de Préstamos</h2>
-    <p>Consulta y administra tus libros prestados en esta sección.</p>
-  
-    <div class="loan-card">
-      <h4>Libro: El Nombre del Viento</h4>
-      <p>Fecha de préstamo: 01/04/2025</p>
-      <p>Fecha de devolución: 15/04/2025</p>
-      <button>Marcar como Devuelto</button>
+<div class="books-container">
+  <div class="header-actions">
+    <h2>Listado de Libros</h2>
+    <div class="search-add">
+      <input type="text" [(ngModel)]="searchTerm" (input)="filterBooks()" 
+             placeholder="Buscar por título, autor o género" class="search-input">
+      <a routerLink="/books/add" class="add-button">+ Agregar Libro</a>
     </div>
-    
-    <!-- Puedes repetir o hacer un *ngFor para múltiples préstamos -->
   </div>
+
+  <div *ngIf="isLoading" class="loading">Cargando libros...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="!isLoading && filteredBooks.length > 0" class="books-table">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Género</th>
+        <th>Año</th>
+        <th>Disponibilidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of filteredBooks">
+        <td>{{ book.librosTitulo }}</td>
+        <td>{{ book.librosAutor }}</td>
+        <td>{{ book.librosGenero }}</td>
+        <td>{{ book.librosAnio }}</td>
+        <td>{{ book.librosDisponible ? 'Disponible' : 'Prestado' }}</td>
+        <td class="actions">
+          <a [routerLink]="['/books/edit', book.librosId]" class="edit-button">Editar</a>
+          <button (click)="deleteBook(book.librosId)" class="delete-button">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!isLoading && filteredBooks.length === 0" class="no-results">
+    No se encontraron libros
+    <div *ngIf="searchTerm">para "{{ searchTerm }}"</div>
+  </div>
+</div>
