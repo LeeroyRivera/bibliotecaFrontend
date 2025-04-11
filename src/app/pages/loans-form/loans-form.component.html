@@ -1,65 +1,62 @@
 <div class="login-container">
-    <h2>Registro de Préstamo</h2>
-    
-    <form [formGroup]="loanForm" (ngSubmit)="onSubmit()" class="loan-form">
-      <div class="form-group">
-        <label for="libro">Libro</label>
-        <input type="text" id="libro" formControlName="libro" class="form-control" 
-               placeholder="Ingrese el nombre del libro">
-        
-        <div *ngIf="libro?.invalid && (libro?.dirty || libro?.touched)" class="error-message">
-          <div *ngIf="libro?.errors?.['required']">
-            El nombre del libro es requerido
-          </div>
-          <div *ngIf="libro?.errors?.['minlength']">
-            Mínimo 3 caracteres
-          </div>
-          <div *ngIf="libro?.errors?.['maxlength']">
-            Máximo 100 caracteres
-          </div>
+  <h2>Registro de Préstamo</h2>
+  
+  <form [formGroup]="loanForm" (ngSubmit)="onSubmit()" class="loan-form">
+    <div class="form-group">
+      <label for="libro">Libro</label>
+      <input type="text" id="libro" formControlName="libro" class="form-control" 
+             placeholder="Ingrese el nombre del libro">
+      
+      <div *ngIf="libro?.invalid && (libro?.dirty || libro?.touched)" class="error-message">
+        <div *ngIf="libro?.errors?.['required']">
+          El nombre del libro es requerido
+        </div>
+        <div *ngIf="libro?.errors?.['minlength']">
+          Mínimo 3 caracteres
+        </div>
+        <div *ngIf="libro?.errors?.['maxlength']">
+          Máximo 100 caracteres
         </div>
       </div>
-  
-      <div class="form-group">
-        <label for="usuario">Usuario</label>
-        <input type="text" id="usuario" formControlName="usuario" class="form-control" 
-               placeholder="Ingrese el nombre del usuario">
-        
-        <div *ngIf="usuario?.invalid && (usuario?.dirty || usuario?.touched)" class="error-message">
-          <div *ngIf="usuario?.errors?.['required']">
-            El nombre del usuario es requerido
-          </div>
-          <div *ngIf="usuario?.errors?.['minlength']">
-            Mínimo 3 caracteres
-          </div>
-          <div *ngIf="usuario?.errors?.['maxlength']">
-            Máximo 50 caracteres
-          </div>
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="usuario">Usuario</label>
+      <input type="text" id="usuario" formControlName="usuario" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="prestamoFechaInicial">Fecha de Préstamo</label>
+      <input type="date" id="prestamoFechaInicial" formControlName="prestamoFechaInicial" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="prestamoFechaDevolucion">Fecha de Devolución</label>
+      <input type="date" id="prestamoFechaDevolucion" formControlName="prestamoFechaDevolucion" class="form-control">
+    </div>
+
+    <div class="form-group checkbox-group">
+      <label for="prestamoEstado">
+        <input type="checkbox" id="prestamoEstado" formControlName="prestamoEstado">
+        ¿Libro devuelto?
+      </label>
+    </div>
+
+    <div class="form-footer">
+      <div *ngIf="submitError" class="error-message">
+        {{ submitError }}
       </div>
-  
-      <div class="form-group">
-        <label for="prestamoFechaInicial">Fecha de Préstamo</label>
-        <input type="date" id="prestamoFechaInicial" formControlName="prestamoFechaInicial" class="form-control">
-      </div>
-  
-      <div class="form-group">
-        <label for="prestamoFechaDevolucion">Fecha de Devolución</label>
-        <input type="date" id="prestamoFechaDevolucion" formControlName="prestamoFechaDevolucion" class="form-control">
-      </div>
-  
-      <div class="form-group">
-        <label for="prestamoEstado">Estado</label>
-        <select id="prestamoEstado" formControlName="prestamoEstado" class="form-control">
-          <option value="PENDIENTE">Pendiente</option>
-          <option value="DEVUELTO">Devuelto</option>
-          <option value="VENCIDO">Vencido</option>
-        </select>
-      </div>
-  
+      
       <div class="button-group">
-        <button type="submit" class="login-btn" [disabled]="!loanForm.valid">Guardar</button>
-        <button type="button" class="register-btn" (click)="loanForm.reset()">Limpiar</button>
+        <button type="button" class="cancel-button" (click)="resetForm()">
+          Limpiar
+        </button>
+        
+        <button type="submit" class="submit-button" [disabled]="loanForm.invalid || isSubmitting">
+          <span *ngIf="!isSubmitting">Guardar</span>
+          <span *ngIf="isSubmitting">Guardando...</span>
+        </button>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>

@@ -1,46 +1,302 @@
+/* Paleta de colores café pastel */
+:root {
+  --cafe-claro: #f5e9dc;
+  --cafe-medio: #e3d5c8;
+  --cafe-oscuro: #d4b999;
+  --cafe-acento: #b38b6d;
+  --texto-oscuro: #5a4a42;
+  --texto-claro: #8c7b75;
+  --blanco: #fff9f5;
+  --error: #e8c4c4;
+  --exito: #d8e3d4;
+}
+
+/* Estilos generales */
 .loans-container {
-    padding: 60px;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f9f5f0;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  background-color: var(--blanco);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: var(--cafe-oscuro);
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-title {
+  color: var(--blanco);
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card-tools {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-box {
+  position: relative;
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--texto-claro);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--cafe-claro);
+  color: var(--texto-oscuro);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--cafe-acento);
+}
+
+.add-button {
+  background-color: var(--cafe-acento);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: var(--cafe-oscuro);
+  transform: translateY(-1px);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Tabla */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.loans-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 600px;
+}
+
+.loans-table th {
+  background-color: var(--cafe-medio);
+  color: var(--texto-oscuro);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.loans-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--cafe-claro);
+  color: var(--texto-oscuro);
+  vertical-align: middle;
+}
+
+.loans-table tr:not(:last-child) td {
+  border-bottom: 1px solid var(--cafe-claro);
+}
+
+.loans-table tr:hover td {
+  background-color: var(--cafe-claro);
+}
+
+/* Badges de estado */
+.status-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.pendiente {
+  background-color: #f8e3c5;
+  color: #b37a12;
+}
+
+.devuelto {
+  background-color: var(--exito);
+  color: #4a7c59;
+}
+
+.vencido {
+  background-color: var(--error);
+  color: #a04442;
+}
+
+/* Botones de acción */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-button.edit {
+  background-color: var(--cafe-medio);
+  color: var(--texto-oscuro);
+}
+
+.action-button.delete {
+  background-color: #f0d6d6;
+  color: #a04442;
+}
+
+.action-button:hover {
+  transform: scale(1.1);
+}
+
+/* Estados */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--cafe-medio);
+  border-top-color: var(--cafe-acento);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-state {
+  background-color: var(--error);
+  color: #a04442;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: var(--cafe-oscuro);
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.empty-state h3 {
+  color: var(--texto-oscuro);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--texto-claro);
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
   
-  .loans-container h2 {
-    font-size: 2rem;
-    color: #5e1f28;
-    margin-bottom: 10px;
+  .search-box {
+    width: 100%;
+    max-width: none;
   }
   
-  .loans-container p {
-    font-size: 1rem;
-    color: #8a2f2e;
-    margin-bottom: 30px;
+  .loans-table {
+    display: block;
   }
   
-  .loan-card {
-    background-color: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(94, 31, 40, 0.1);
-    margin-bottom: 20px;
-    border: 1px solid #f7bb75;
+  .loans-table thead {
+    display: none;
   }
   
-  .loan-card h4 {
-    margin-bottom: 10px;
-    color: #5e1f28;
+  .loans-table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .loan-card button {
-    margin-top: 10px;
-    background-color: #83764c;
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
+  .loans-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--cafe-claro);
   }
   
-  .loan-card button:hover {
-    background-color: #5e1f28;
+  .loans-table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--cafe-acento);
+    margin-right: 1rem;
   }
+  
+  .loans-table tbody td.actions {
+    justify-content: flex-end;
+  }
+  
+  .loans-table tbody td.actions::before {
+    display: none;
+  }
+}

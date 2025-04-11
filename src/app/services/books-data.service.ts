@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BooksDataService {
-  private apiUrl = 'http://192.168.1.96:3000'; 
+  private apiUrl = 'http://192.168.100.78:3000'; 
   constructor( private http: HttpClient ) { }
 
   getBooks(): Observable<any[]> {
