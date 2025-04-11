@@ -1,26 +1,29 @@
 .home-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 60px;
-  background-color: #f8f1e9; /* Lighter background to complement the palette */
-  min-height: calc(100vh - 100px);
-  font-family: 'Segoe UI', sans-serif;
+  justify-content: space-between;
+  padding: 4rem;
+  height: 100vh;
+  gap: 2rem;
+  background-color: #fdf6ee; /* como en la 1ra imagen */
 }
 
 .home-text {
-  max-width: 50%;
+  flex: 1;
+  padding: 2rem;
 }
 
 .home-text h1 {
-  font-size: 2.8rem;
-  color: #5e1f28; /* Dark maroon */
+  font-size: 3rem;
+  color: #6b1b1b;
+  margin-bottom: 1rem;
 }
+  
 
 .home-text p {
-  margin-top: 20px;
   font-size: 1.2rem;
-  color: #8a2f2e; /* Medium maroon */
+  color: #843838;
+  margin-bottom: 2rem;
 }
 
 .shop-btn:focus,
@@ -53,13 +56,12 @@
   align-items: center;
 }
 
+
 .home-image img {
-  width: 100%;
   max-width: 100%;
   height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(94, 31, 40, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .categories-container {
