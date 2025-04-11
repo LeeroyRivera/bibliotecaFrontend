@@ -6,14 +6,13 @@ import { Router } from '@angular/router';
 import { BooksDataService } from '../../services/books-data.service';
 import { UserService } from '../../services/user.service';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from "../../components/header/header.component";
 import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-loans-form',
   providers: [BooksDataService, LoanService, UserService],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, HeaderComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './loans-form.component.html',
   styleUrls: ['./loans-form.component.css']
 })

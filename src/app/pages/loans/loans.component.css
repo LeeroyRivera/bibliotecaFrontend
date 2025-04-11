@@ -147,21 +147,6 @@
   display: inline-block;
 }
 
-.pendiente {
-  background-color: #f8e3c5;
-  color: #b37a12;
-}
-
-.devuelto {
-  background-color: var(--exito);
-  color: #4a7c59;
-}
-
-.vencido {
-  background-color: var(--error);
-  color: #a04442;
-}
-
 /* Botones de acción */
 .actions {
   display: flex;
