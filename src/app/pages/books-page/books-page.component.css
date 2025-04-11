@@ -51,7 +51,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: #f9f5f0;
     margin: 8px;
     position: relative; /* Needed for the hover effect */
   }
@@ -94,6 +94,7 @@
   .book-details h3 {
     margin: 0 0 8px;
     font-size: 1.5em;
+    color: #ae5543;;
   }
   
   .book-details p {

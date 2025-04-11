@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoanService {
-  private apiUrl = 'http://192.168.100.78:3000'; //ip del servidor, cambiar si es necesario
+  private apiUrl = 'http://192.168.1.96:3000'; //ip del servidor, cambiar si es necesario
   constructor( private http: HttpClient) { }
 
   getLoans(): Observable<any[]> {
