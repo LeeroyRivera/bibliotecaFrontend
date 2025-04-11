@@ -42,9 +42,21 @@
       </label>
     </div>
 
-    <div class="button-group">
-      <button type="submit" class="login-btn" [disabled]="!loanForm.valid">Guardar</button>
-      <button type="button" class="register-btn" (click)="resetForm()">Limpiar</button>
+    <div class="form-footer">
+      <div *ngIf="submitError" class="error-message">
+        {{ submitError }}
+      </div>
+      
+      <div class="button-group">
+        <button type="button" class="cancel-button" (click)="resetForm()">
+          Limpiar
+        </button>
+        
+        <button type="submit" class="submit-button" [disabled]="loanForm.invalid || isSubmitting">
+          <span *ngIf="!isSubmitting">Guardar</span>
+          <span *ngIf="isSubmitting">Guardando...</span>
+        </button>
+      </div>
     </div>
   </form>
 </div>
