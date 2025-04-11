@@ -99,3 +99,41 @@
   .form-control.invalid:focus {
     box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
   }
+  /* Agrega estos estilos */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c3e50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+/* Agrega estos estilos para el checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  transform: scale(1.2); /* Hacer el checkbox un poco más grande */
+}
+
+.checkbox-group label {
+  margin-bottom: 0; /* Eliminar margen inferior predeterminado */
+  cursor: pointer; /* Cambiar cursor al pasar sobre el texto */
+}

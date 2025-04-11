@@ -33,6 +33,7 @@ export class LoginComponent {
         // Si la respuesta es 'ok', se redirige a la página de inicio de sesión
         // Si la respuesta no es 'ok', se muestra un mensaje de error
         if (response.usuariosEstado === true) {
+          console.log(response.usuariosNombre);
           localStorage.setItem('user', JSON.stringify(response.usuariosNombre));
           this.router.navigate(['home']);
         } else {

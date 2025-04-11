@@ -35,13 +35,11 @@
       <input type="date" id="prestamoFechaDevolucion" formControlName="prestamoFechaDevolucion" class="form-control">
     </div>
 
-    <div class="form-group">
-      <label for="prestamoEstado">Estado</label>
-      <select id="prestamoEstado" formControlName="prestamoEstado" class="form-control">
-        <option value="PENDIENTE">Pendiente</option>
-        <option value="DEVUELTO">Devuelto</option>
-        <option value="VENCIDO">Vencido</option>
-      </select>
+    <div class="form-group checkbox-group">
+      <label for="prestamoEstado">
+        <input type="checkbox" id="prestamoEstado" formControlName="prestamoEstado">
+        ¿Libro devuelto?
+      </label>
     </div>
 
     <div class="button-group">

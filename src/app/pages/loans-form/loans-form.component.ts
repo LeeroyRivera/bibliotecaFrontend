@@ -21,7 +21,7 @@ export class LoansFormComponent implements OnInit {
     usuario: new FormControl({ value: '', disabled: true }, Validators.required),
     prestamoFechaInicial: new FormControl('', Validators.required),
     prestamoFechaDevolucion: new FormControl('', Validators.required),
-    prestamoEstado: new FormControl('PENDIENTE', Validators.required)
+    prestamoEstado: new FormControl(false) // Cambiado a booleano para el checkbox
   });
 
   ngOnInit() {
@@ -54,19 +54,24 @@ export class LoansFormComponent implements OnInit {
   onSubmit() {
     if (this.loanForm.valid) {
       this.loanForm.get('usuario')?.enable();
-      const formValue = this.loanForm.value;
-      this.loanForm.get('usuario')?.disable();
+      
+      // Convertir el estado booleano a texto para el backend
+      const formValue = {
+        ...this.loanForm.value,
+        prestamoEstado: this.loanForm.value.prestamoEstado ? 'DEVUELTO' : 'PENDIENTE'
+      };
       
       this.submitLoan.emit(formValue);
+      this.loanForm.get('usuario')?.disable();
       this.resetForm();
     }
   }
 
   resetForm() {
     this.loanForm.reset({
-      prestamoEstado: 'PENDIENTE'
+      prestamoEstado: false // Resetear el checkbox a false (PENDIENTE)
     });
-    this.loadUser(); // Recargar el usuario después del reset
+    this.loadUser();
     this.loanForm.get('usuario')?.disable();
   }
 
